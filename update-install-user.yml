@@ -1,0 +1,56 @@
+- name: Test SURVEY
+  hosts: all
+  gather_facts: yes
+  become: yes
+  
+  vars:
+    packages:
+      - tree
+      - vim
+      - htop
+      - nmon
+      - pwgen
+      - apache2
+    hostname: testhost
+    new_user: roman
+    user_pw: password
+
+  tasks:
+    - name: Connection Check
+      ping:
+
+    - name: Repo Update
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages to the latest version
+      apt:
+        name: "*"
+        state: latest
+
+    - name: Install default Packages
+      apt:
+        name: "{{packages}}"
+        state: present
+
+    - name: Set Hostname
+      hostname:
+        name: "{{hostname}}"
+
+    - name: Create User
+      user:
+        name: "{{new_user}}"
+        home: "/home/{{new_user}}"
+        shell: /bin/bash
+        groups: www-data
+        append: yes
+        password: "{{user_pw}}"
+
+    - name: Create Folder
+      file:
+        path: "/var/www/{{new_user}}"
+        state: directory
+        recurse: yes
+        owner: "{{new_user}}"
+        group: "{{new_user}}"
+        mode: 0755
