@@ -1,0 +1,15 @@
+- name: Test SURVEY
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Repo Update
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages to the latest version
+      apt:
+        name: "*"
+        state: latest
+        

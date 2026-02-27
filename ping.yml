@@ -1,0 +1,9 @@
+- name: Test SURVEY
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - name: Connection Check
+    ping:
+    
