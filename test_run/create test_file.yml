@@ -1,0 +1,11 @@
+- name: Create TEST.TEST in /tmp
+  hosts: all
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Create TEST.TEST file
+      file:
+        path: /tmp/TEST.TEST
+        state: touch
+        mode: '0644'
