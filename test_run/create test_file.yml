@@ -6,6 +6,6 @@
   tasks:
     - name: Create TEST.TEST file
       file:
-        path: /tmp/TEST.TEST
+        path: /tmp/TEST.PING_GIT_LAB
         state: touch
         mode: '0644'
