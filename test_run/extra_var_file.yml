@@ -1,0 +1,18 @@
+---
+- name: Test extra vars in Semaphore
+  hosts: all
+  gather_facts: false
+
+  vars:
+    my_secret: "default"
+
+  tasks:
+    - name: Set filename using extra var
+      set_fact:
+        file_suffix: "{{ my_var | default(my_secret) }}"
+
+    - name: Create file in /tmp
+      file:
+        path: "/tmp/TEST.{{ file_suffix }}"
+        state: touch
+        mode: '0644'
