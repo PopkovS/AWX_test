@@ -4,12 +4,12 @@
   become: yes
 
   tasks:
-    - name: Who am I
-      command: whoami
-      register: out
+    # - name: Who am I
+    #   command: whoami
+    #   register: out
 
-    - debug:
-        var: out.stdout
+    # - debug:
+    #     var: out.stdout
     - name: Create TEST.TEST file
       file:
         path: /root/TEST.Become
