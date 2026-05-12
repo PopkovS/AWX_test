@@ -1,7 +1,7 @@
 - name: Create TEST.TEST in /tmp
   hosts: all
   gather_facts: no
-  become: yes
+  # become: yes
 
   tasks:
     # - name: Who am I
@@ -12,6 +12,6 @@
     #     var: out.stdout
     - name: Create TEST.TEST file
       file:
-        path: /root/TEST.Become
+        path: /tmp/TEST.Become
         state: touch
         mode: '0644'
