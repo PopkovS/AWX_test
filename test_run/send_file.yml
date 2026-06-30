@@ -1,0 +1,4 @@
+- name: Copy archive
+  ansible.builtin.copy:
+    src: /usr/share/assistant/test_file.zip
+    dest: /tmp/test_file.zip
